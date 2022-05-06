@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %} {% block title %}Rooms | {% endblock %}
+{% block content %}
+<div class="p-10 lg:p-20 text-center">
+  <h1 class="text-3xl lg:text-6xl text-white">Perons Data</h1>
+</div>
+    <div class="row align-items-center justify-content-center">
+
+    <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Birth Day</th>
+        <th scope="col">Location</th>
+    </tr>
+  </thead>
+          {% for person in persons %}
+  <tbody>
+    <tr>
+
+      <th scope="row">{{ person.id }}</th>
+      <td>{{ person.name }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.birth_date }}</td>
+        <td>{{ person.location }}</td>
+
+    </tr>
+  </tbody>
+     {% endfor %}
+</table>
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %} {% block title %}Add Person Data | {% endblock %}
+
+{%block content %}
+<div class="p-10 lg:p-20 text-center">
+  <h1 class="text-3xl lg:text-6xl text-white">Add Person Data</h1>
+</div>
+    <div class="container-fluid">
+<form method="post" enctype="multipart/form-data" class="lg:w-1/4 px-4 mx-auto">
+    {% csrf_token %}
+    <div class="mb-5">
+    <label class="text-white">Upload File</label>
+        <input type="file"
+               name="myfile"
+        class="w-full mt-2 px-4 py-2 rounded-xl"
+        >
+  </div>
+
+    <button type="submit" class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Upload</button>
+  </form>
+</div>
+
+     <div class="container-fluid">
+<form method="post" action="/api/add-person" class="lg:w-1/4 px-4 mx-auto">
+  {% csrf_token %}
+
+  <div class="mb-5">
+    <label class="text-white">name</label>
+
+    <input
+      type="text"
+      name="name"
+      class="w-full mt-2 px-4 py-2 rounded-xl"
+    />
+  </div>
+
+  <div class="mb-5">
+    <label class="text-white">email</label>
+
+    <input
+      type="email"
+      name="email"
+      class="w-full mt-2 px-4 py-2 rounded-xl"
+    />
+  </div>
+
+  <div class="mb-5">
+    <label class="text-white">location</label>
+
+    <input
+      type="location"
+      name="location"
+      class="w-full mt-2 px-4 py-2 rounded-xl"
+    />
+  </div>
+
+ <div class="mb-5">
+    <label class="text-white">birth_date</label>
+
+    <input
+      type="birth_date"
+      name="birth_date"
+      class="w-full mt-2 px-4 py-2 rounded-xl"
+    />
+  </div>
+
+  {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+  <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+    <p>{{ error|escape }}</p>
+  </div>
+  {% endfor %} {% endfor %} {% endif %}
+
+  <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">
+    Submit
+  </button>
+</form>
+     </div>
+{% endblock %}
